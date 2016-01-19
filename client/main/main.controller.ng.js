@@ -5,6 +5,7 @@ angular.module('twApp')
   var tweetsToShow = [];
   var newId = '';
   var oldId = '';
+  //                                                  |---v
   // initIds -> populateTweets (-> getOldTweets) -> showTweets
   //                ^----------------------------------|
   var initIds = function() {
@@ -58,6 +59,22 @@ angular.module('twApp')
       } else {
         var text = tweet.text;
       }
+      // validate, re-call on failure
+      var show = true;
+      if (text.length < 5) {
+        show = false;
+      }
+      if (tweet.in_reply_to_status_id) {
+        show = false;
+      }
+      if (text.indexOf('http://') >= 0 || text.indexOf('https://') >= 0) {
+        show = false;
+      }
+      if (!show) {
+        showTweets();
+        return;
+      }
+
       $scope.text = text;
       $timeout(showTweets, 10000);
     } else {
