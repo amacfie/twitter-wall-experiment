@@ -10,5 +10,7 @@
         "consumer_secret":      "...",
         "access_token":         "...",
         "access_token_secret":  "..."
-      }
+      },
+      "listOwner": "Grognor",
+      "listUrlName": "weird-sun-twitter"
     }
